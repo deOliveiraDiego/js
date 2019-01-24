@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2 - Curso Javascript</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>Exercício 1 e 2</h1>
+  <button id="new">Novo quadrado</button>
+
+  <div id="squares"></div>
+
+  <hr>
+
+  <h1>Exercício 3 e 4</h1>
+  
+  <div class="nomes">
+    <input type="text" name="nome">
+    <button onClick="adicionar()">Adicionar</button>
+    <ul class="nomes"></ul>
+  </div>
+
+  <script>
+    var btnElement = document.getElementById('new');
+    var squaresElement = document.getElementById('squares');
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    btnElement.onclick = function () {
+      var square = document.createElement('div');
+      square.style.width = '100px';
+      square.style.height = '100px';
+      square.style.backgroundColor = '#F00';
+      square.style.margin = '10px';
+
+      square.onmouseover = function () {
+        square.style.backgroundColor = getRandomColor();
+      }
+      squaresElement.appendChild(square);
+    };
+
+    // 
+
+    var nomes = ["Diego", "Gabriel", "Lucas"],
+      ulElement = document.querySelector('ul.nomes'),
+      textArea = document.querySelector('div.nomes input')
+
+
+    function buildUl() {
+      var i = 0;
+      while (i < nomes.length) {
+        item = document.createElement('li');
+        item.innerHTML = nomes[i];
+        ulElement.appendChild(item);
+        i++;
+      }
+    }
+
+    function adicionar() {
+      value = textArea.value;
+      if (value != '') {
+        item = document.createElement('li');
+        item.innerHTML = value;
+        ulElement.appendChild(item);
+        textArea.value = "";
+      }
+    }
+
+    buildUl();
+  </script>
+</body>
+
+</html>
